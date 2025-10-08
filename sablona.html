@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Pozvánka</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .pozvanka {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0056b3;
+            font-size: 24px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .osloveni {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .patek {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="pozvanka">
+        <h1>Ministerstvo zahraničních věcí</h1>
+        <h2>Pozvánka na výroční setkání</h2>
+        <p class="osloveni">
+            Vážený/á {{ Titul }} {{ Jmeno }},
+        </p>
+        <p>
+            s radostí Vás zveme na výroční setkání naší společnosti, které se bude konat
+            v pátek 15. listopadu 2025 v našem sídle.
+        </p>
+        <p>
+            Velmi si vážíme Vaší práce na pozici <strong>{{ Pozice }}</strong> a těšíme se na neformální setkání s Vámi.
+        </p>
+        <div class="patek">
+            <p>S přátelským pozdravem,</p>
+            <p>Vedení společnosti</p>
+            <p>a Michalea</p>
+        </div>
+    </div>
+</body>
+</html>
