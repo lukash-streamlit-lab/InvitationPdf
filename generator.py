@@ -52,6 +52,14 @@ def main() -> None:
         print("Žádní adresáti k zpracování. Končím.")
         return
 
+    # úprava dat pro šablonu
+    # pro každý záznam v upravit: pokud v "spouse" je něco vyplněno, tak to nahradit "and spouse", jinak prázdný řetězec
+    for recipient in recipients:
+        if recipient.get("spouse"):
+            recipient["spouse"] = "and spouse"
+        else:
+            recipient["spouse"] = ""
+
     # Nastavení a načtení Jinja2 šablony
     template_dir = os.path.abspath(os.path.dirname(TEMPLATE_FILE))
     env = Environment(loader=FileSystemLoader("."))
