@@ -5,8 +5,8 @@ from weasyprint import HTML
 from typing import List, Dict, Any
 
 # --- Konfigurace ---
-CSV_FILE: str = "adresari.csv"
-TEMPLATE_FILE: str = "sablona.html"
+CSV_FILE: str = "input/data/manual-entry.csv"
+TEMPLATE_FILE: str = "input/template/pozvanka.html"
 OUTPUT_DIR: str = "vytvorene_pozvanky"
 
 
@@ -17,9 +17,9 @@ def create_output_directory(path: str) -> None:
         os.makedirs(path)
 
 def load_recipients(file_path: str) -> List[Dict[str, Any]]:
-    """Načte adresáty z CSV souboru a vrátí je jako seznam slovníků."""
+    """Načte adresáty z CSV souboru s oddělovačem '|' a vrátí je jako seznam slovníků."""
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, sep="|", engine="python")
         # Nahradíme prázdné hodnoty (NaN) prázdným řetězcem pro bezpečné použití v šabloně
         df.fillna("", inplace=True)
         return df.to_dict(orient="records")
@@ -33,7 +33,7 @@ def generate_pdf_invitation(data: Dict[str, Any], template: Any, output_dir: str
     rendered_html: str = template.render(data)
 
     # Vytvoření bezpečného názvu souboru (nahradí mezery podtržítky)
-    recipient_name: str = data.get("Jmeno", "neznamy").replace(" ", "_")
+    recipient_name: str = data.get("fullName", "neznamy").replace(" ", "_")
     output_filename: str = f"pozvanka_{recipient_name}.pdf"
     output_path: str = os.path.join(output_dir, output_filename)
 
