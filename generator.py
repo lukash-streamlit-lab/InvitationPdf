@@ -34,7 +34,7 @@ def generate_pdf_invitation(data: Dict[str, Any], template: Any, output_dir: str
 
     # Vytvoření bezpečného názvu souboru (nahradí mezery podtržítky)
     recipient_name: str = data.get("fullName", "neznamy").replace(" ", "_")
-    output_filename: str = f"pozvanka_{recipient_name}.pdf"
+    output_filename: str = f"invitation_{recipient_name}.pdf"
     output_path: str = os.path.join(output_dir, output_filename)
 
     # Generování PDF s base_url pro správné načítání obrázků
@@ -59,6 +59,11 @@ def main() -> None:
             recipient["spouse"] = "and spouse"
         else:
             recipient["spouse"] = ""
+
+    # Oříznutí mezer z fullName u každého adresáta
+    for recipient in recipients:
+        if recipient.get("fullName"):
+            recipient["fullName"] = recipient["fullName"].strip()
 
     # Nastavení a načtení Jinja2 šablony
     template_dir = os.path.abspath(os.path.dirname(TEMPLATE_FILE))
