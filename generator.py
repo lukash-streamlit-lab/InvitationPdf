@@ -27,7 +27,7 @@ def load_recipients(file_path: str) -> List[Dict[str, Any]]:
         print(f"Chyba: Soubor '{file_path}' nebyl nalezen.")
         return []
 
-def generate_pdf_invitation(data: Dict[str, Any], template: Any, output_dir: str) -> None:
+def generate_pdf_invitation(data: Dict[str, Any], template: Any, output_dir: str, template_dir: str) -> None:
     """Vygeneruje a uloží jednu PDF pozvánku."""
     # Vytvoření HTML obsahu ze šablony
     rendered_html: str = template.render(data)
@@ -37,9 +37,9 @@ def generate_pdf_invitation(data: Dict[str, Any], template: Any, output_dir: str
     output_filename: str = f"pozvanka_{recipient_name}.pdf"
     output_path: str = os.path.join(output_dir, output_filename)
 
-    # Generování PDF
-    HTML(string=rendered_html).write_pdf(output_path)
-    print(f"- Vygenerována pozvánka pro: {data.get('Jmeno')}")
+    # Generování PDF s base_url pro správné načítání obrázků
+    HTML(string=rendered_html, base_url=template_dir).write_pdf(output_path)
+    print(f"- Vygenerována pozvánka pro: {data.get('fullName', 'neznamy')}")
 
 def main() -> None:
     """Hlavní funkce pro orchestraci generování pozvánek."""
@@ -53,6 +53,7 @@ def main() -> None:
         return
 
     # Nastavení a načtení Jinja2 šablony
+    template_dir = os.path.abspath(os.path.dirname(TEMPLATE_FILE))
     env = Environment(loader=FileSystemLoader("."))
     template = env.get_template(TEMPLATE_FILE)
 
@@ -60,7 +61,7 @@ def main() -> None:
 
     # Generování PDF pro každého adresáta
     for recipient in recipients:
-        generate_pdf_invitation(recipient, template, OUTPUT_DIR)
+        generate_pdf_invitation(recipient, template, OUTPUT_DIR, template_dir)
 
     print(f"\nHotovo! Všechny pozvánky byly uloženy do adresáře '{OUTPUT_DIR}'.")
 
