@@ -1,4 +1,3 @@
-
 # Pokud mám nainstalovaný conda, tak:
 conda create --name pozvanky python=3.10
 conda activate pozvanky
@@ -7,3 +6,9 @@ conda install -c conda-forge pandas jinja2 weasyprint
 # Spustit:
 conda activate pozvanky
 python3 generator.py
+
+# Formát vstupního souboru 
+- src: "/input/data/manual-entry.csv"
+- example:
+fullName|spouse
+Lieutenant General Tihomir KUNDID|
