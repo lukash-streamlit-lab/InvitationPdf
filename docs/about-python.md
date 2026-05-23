@@ -62,7 +62,7 @@ Skript bude obsahovat následující logiku:
 6.  **Generovací smyčka:** Skript projde řádek po řádku data z CSV.
     a. Pro každý řádek (adresáta) se jeho data (jméno, pozice atd.) vloží do načtené HTML šablony.
     b. Výsledný HTML kód pro daného adresáta se pomocí `WeasyPrint` převede na PDF.
-    c. PDF se uloží do složky `vytvorene_pozvanky` pod unikátním názvem (např. `pozvanka_Jan_Novak.pdf`).
+    c. PDF se uloží do složky `vytvorene_pozvanky` pod unikátním názvem (např. `pozvanka_host_001.pdf`).
 7.  **Informační výpisy:** Skript bude do konzole vypisovat průběh generování.
 
 #### Krok 4: Spuštění

@@ -11,4 +11,4 @@ python3 generator.py
 - src: "/input/data/manual-entry.csv"
 - example:
 fullName|spouse
-Lieutenant General Tihomir KUNDID|
+Host 001|

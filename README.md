@@ -14,7 +14,6 @@ Jednoduchý Python nástroj pro hromadné generování personalizovaných PDF po
 │   │   └── manual-entry.csv             # vstupní seznam adresátů
 │   └── template/
 │       ├── pozvanka.html                # HTML/Jinja2 šablona pozvánky
-│       └── Nina-Čalopek_sanitized__files/ # obrázky a podpůrné soubory šablony
 ├── vytvorene_pozvanky/                  # vygenerované PDF pozvánky
 └── vytvorene_pozvanky.zip               # archiv vygenerovaných pozvánek
 ```
@@ -65,8 +64,8 @@ Soubor používá oddělovač `|` a musí obsahovat hlavičku:
 
 ```csv
 fullName|spouse
-H.E. Mr. Example Name|
-H.E. Mrs. Example Name|yes
+Host 001|
+Host 002|yes
 ```
 
 Význam sloupců:
@@ -114,11 +113,7 @@ input/template/pozvanka.html
 
 Při úpravách šablony neměňte názvy proměnných, pokud zároveň neupravíte i CSV a logiku v `generator.py`.
 
-Obrázky a podpůrné soubory šablony jsou v adresáři:
-
-```text
-input/template/Nina-Čalopek_sanitized__files/
-```
+Pokud šablona používá obrázky nebo jiné podpůrné soubory, ukládejte je do adresáře `input/template/` nebo jeho podadresářů a zachovejte odpovídající relativní cesty v HTML.
 
 ## Kontrola výsledků
 
