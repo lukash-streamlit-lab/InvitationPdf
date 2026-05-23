@@ -28,8 +28,8 @@ Vytvoříme jednoduchý CSV soubor s názvem `adresari.csv`. Bude obsahovat slou
 *Příklad (`adresari.csv`):*
 ```csv
 Jmeno,Titul,Pozice,Email,Telefon
-Jan Novák,Ing.,Ředitel společnosti,jan.novak@firma.cz,123456789
-Petra Svobodová,,Marketingový specialista,petra.svobodova@firma.cz,987654321
+Host 001,Mgr.,Koordinátor programu,host001@example.test,000000001
+Host 002,,Účastník akce,host002@example.test,000000002
 ```
 
 **Krok 2: Vytvoření HTML šablony**
@@ -72,7 +72,7 @@ Vytvoříme skript (např. v Pythonu nebo C#/.NET, jelikož jste ve složce `dot
     a. Vytvoří kopii HTML šablony.
     b. Nahradí zástupné značky (`{{JMENO}}`, `{{POZICE}}` atd.) skutečnými daty daného adresáta.
     c. Pomocí specializované knihovny vygeneruje z tohoto upraveného HTML soubor PDF.
-    d. Uloží PDF pod unikátním názvem (např. `pozvanka_Jan_Novak.pdf`).
+    d. Uloží PDF pod unikátním názvem (např. `pozvanka_host_001.pdf`).
 
 **Příklad technologií:**
 *   **Python:** Velmi populární pro tento úkol. Použili bychom knihovny jako `pandas` pro čtení CSV, `Jinja2` pro práci se šablonami a `WeasyPrint` pro excelentní převod HTML/CSS do PDF.
