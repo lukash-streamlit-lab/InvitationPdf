@@ -19,6 +19,8 @@ streamlit run webapp/app.py
 ```
 
 Na systémech bez knihoven pro WeasyPrint je potřeba doinstalovat balíčky z `packages.txt`.
+Pro Streamlit Cloud musí být tento soubor v kořeni repozitáře; `webapp/packages.txt`
+je jen kopie pro lokální práci s webovou částí.
 
 ## Streamlit Community Cloud
 
@@ -27,7 +29,7 @@ Nejjednodušší free hosting pro tuto aplikaci je Streamlit Community Cloud:
 - oficiální služba pro Streamlit aplikace,
 - nasazuje přímo z GitHub repozitáře,
 - pro tento projekt umí použít `webapp/requirements.txt`,
-- systémové knihovny pro WeasyPrint je potřeba dát do `packages.txt` v kořeni repozitáře.
+- systémové knihovny pro WeasyPrint načte z `packages.txt` v kořeni repozitáře.
 
 Oficiální dokumentace:
 
@@ -39,16 +41,19 @@ Oficiální dokumentace:
 
 Před deployem ověřte, že jsou změny nahrané v GitHub repozitáři. Streamlit Cloud aplikaci spustí z GitHubu, ne z lokální složky.
 
-Protože WeasyPrint potřebuje systémové knihovny, zkopírujte `webapp/packages.txt` také do kořene repozitáře:
+Protože WeasyPrint potřebuje systémové knihovny, musí být v kořeni repozitáře soubor `packages.txt`.
+Streamlit Cloud ho použije při buildu pro instalaci apt balíčků jako Pango, Harfbuzz a fonty.
+GLib runtime se nainstaluje jako systémová závislost těchto balíčků.
+Změny nahrajte například takto:
 
 ```bash
-cp webapp/packages.txt packages.txt
 git add webapp packages.txt
 git commit -m "add web pdf generator app"
 git push
 ```
 
 `webapp/requirements.txt` může zůstat v `webapp/`, protože je vedle vstupního souboru aplikace `webapp/app.py`.
+Při vytváření aplikace v Advanced settings zvolte Python 3.12.
 
 ### Deploy krok za krokem
 
@@ -67,7 +72,7 @@ webapp/app.py
 
 ### Po deployi
 
-- Pokud build spadne na WeasyPrint/Pango/fonty, zkontrolujte, že `packages.txt` je opravdu v kořeni repozitáře.
+- Pokud build spadne na WeasyPrint/Pango/GLib/fonty, zkontrolujte, že `packages.txt` je opravdu v kořeni repozitáře.
 - Pokud build spadne na Python import, zkontrolujte `webapp/requirements.txt`.
 - Nové změny aplikace nasadíte běžně přes `git push`.
 
